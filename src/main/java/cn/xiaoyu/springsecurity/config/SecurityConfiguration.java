@@ -1,5 +1,6 @@
 package cn.xiaoyu.springsecurity.config;
 
+import cn.xiaoyu.springsecurity.service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,6 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     BackdoorAuthenticationProvider backdoorAuthenticationProvider;
+    @Autowired
+    MyUserDetailsService myUserDetailsService;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -23,6 +26,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .withUser("admin").password(new BCryptPasswordEncoder().encode("pwd")).roles("USER", "ADMIN");
         // 将自定义验证类注册进去
         auth.authenticationProvider(backdoorAuthenticationProvider);
+        // 加入数据库验证类，下面的语句实际上在验证链中加入了一个DaoAuthenticationProvider
+        auth.userDetailsService(myUserDetailsService).passwordEncoder(new BCryptPasswordEncoder());
     }
 
     /**
