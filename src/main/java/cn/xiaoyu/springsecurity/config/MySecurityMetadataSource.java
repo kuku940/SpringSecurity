@@ -20,7 +20,9 @@ import java.util.List;
 public class MySecurityMetadataSource implements FilterInvocationSecurityMetadataSource {
     private static final List<MyResourceBean> resources = initResource();
 
-    // 本方法返回访问资源所需的角色集合
+    /**
+     * 本方法返回访问资源所需的角色集合
+     */
     AntPathMatcher antPathMatcher = new AntPathMatcher();
 
     @Override
