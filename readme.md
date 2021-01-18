@@ -65,7 +65,10 @@ spring Security功能的实现主要是由一系列过滤器链相互配合完�
 
 ### 工作流程
 ![工作流程](./src/main/resources/images/工作流程.png)
-### 授权流程
-![授权流程](./src/main/resources/images/授权流程.png)
 ### 认证流程
 ![认证流程](./src/main/resources/images/认证流程.png)
+### 授权流程
+![授权流程](./src/main/resources/images/授权流程.png)
+
+## 参考
+[初识 Spring Security](https://www.w3cschool.cn/springsecurity/)
